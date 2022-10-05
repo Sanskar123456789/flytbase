@@ -1,0 +1,67 @@
+
+<agm-map 
+  [latitude]="longitude"
+  [longitude]="lattitude"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  >
+
+  <agm-marker 
+      *ngFor="let m of markers; let i = index"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      >
+      
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+    
+  </agm-marker>
+</agm-map>
+
+
+<div class="content grid p-fluid gap-3">
+  <div class="field col-12 md:col-3">
+    <label for="locale-indian">Longitude</label>
+    <p-inputNumber [(ngModel)]="longitude" inputId="locale-indian" mode="decimal"  [disabled]="disabled" [minFractionDigits]="7">
+    </p-inputNumber>
+  </div>
+  <div class="field col-12 md:col-3 ">
+    <label for="locale-indian">lattitude</label>
+    <p-inputNumber [(ngModel)]="lattitude" inputId="locale-indian" mode="decimal"  [disabled]="disabled"  [minFractionDigits]="7">
+    </p-inputNumber>
+  </div>
+  <div class="field col-3 md:col-1">
+    <label for="vertical" style="display: block">Seconds</label>
+    <p-inputNumber [(ngModel)]="time" [showButtons]="true" [disabled]="disabled" [min]="0">
+    </p-inputNumber>
+  </div>
+
+  <p-button label="Add" class="mt-5" (click)="addlocation()"  [disabled]="disabled"></p-button>
+  
+  <p-fileUpload  #fubauto mode="basic" class="mt-5" name="demo[]" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" [maxFileSize]="1000000" (onSelect)="getfile($event)" [auto]="true" [disabled]="disabled" chooseLabel="Browse"></p-fileUpload>
+
+</div>  
+<div class="content grid p-fluid  mt-1">
+  <div class="field col-12 md:col-1">
+    <button pButton pRipple type="button" icon="pi pi-play" class="p-button-rounded p-button-help p-button-outlined" (click)="disable()"></button>
+  </div>
+
+  <div class="field col-12 md:col-1">
+    <button pButton pRipple type="button" icon="pi pi-pause" class="p-button-rounded p-button-danger p-button-outlined" (click)="notdisable()"></button>
+  </div>
+
+  <div class="slider field col-12 md:col-8 mt-4">
+    <p-slider [(ngModel)]="timer" [min]="0" [max]="max" [disabled]="true"></p-slider>
+  </div>
+
+</div>
+<br>
+<br>
+<div>
+
+  
+</div>
+
